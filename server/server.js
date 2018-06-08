@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         console.log('createMessage', message);
         //io.emit emits the same event to all connections
         // io.emit('newMessage', {
@@ -60,6 +60,7 @@ io.on('connection', (socket) => {
         //     text: message.text,
         //     createdAt: new Date().getTime()
         // })
+        callback('This is from the server');
     });
 
     socket.on('disconnect', () => {
